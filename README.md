@@ -1,6 +1,6 @@
 # Monq.Models.Abstractions
 
-В библиотеке представлены примитивы входных моделей, а также кастомные аттрибуты валидации.
+В библиотеке представлены примитивы входных моделей, а также кастомные атрибуты валидации.
 
 <!-- TOC -->
 [Monq.Models.Abstractions](#monqmodelsabstractions)
@@ -8,7 +8,7 @@
     - [Модели](#модели)
         - [I. BasicIdPostViewModel](#i-basicidpostviewmodel)
         - [II. DatePostViewModel](#ii-datepostviewmodel)
-    - [Аттрибуты валидации](#аттрибуты-валидации)
+    - [Атрибуты валидации](#атрибуты-валидации)
       - [I. BasicIdRequiredAttribute](#i-basicidrequiredattribute)
       - [II. BasicIdRangeAttribute](#ii-basicidrangeattribute)
       - [II. StringRangeAttribute](#ii-stringrangeattribute)
@@ -100,7 +100,7 @@ public class BuildFilterViewModel
 }
 ```
 
-## Аттрибуты валидации
+## Атрибуты валидации
 
 #### I. BasicIdRequiredAttribute
 
