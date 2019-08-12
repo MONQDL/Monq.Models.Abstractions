@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <Version>1.0</Version>
+    <VersionSuffix>$(VersionSuffix)</VersionSuffix>
+    <Version Condition=" '$(VersionSuffix)' != '' ">$(Version)-$(VersionSuffix)</Version>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>NorthRebel</Authors>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://gitlab.monq.ru/smon.monq.ru/libraries/Monq.Models.Abstractions</RepositoryUrl>
+    <PackageTags>monq service-monitor</PackageTags>
+    <IsPackable>true</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
+  </ItemGroup>
+
+</Project>
