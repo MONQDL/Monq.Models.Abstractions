@@ -5,7 +5,6 @@ variables:
   VERSION: "4.0.0"
 
   MAINAPP_ASP_PROJECT_PATH: "src/$ASP_PROJECT_NAME"
-  TEST_MAINAPP_ASP_PROJECT_PATH: "src/$ASP_PROJECT_NAME.Tests"
   SRC_PATH: "src"
 
   NUGET_PACKAGES: /storage/nuget
@@ -20,16 +19,6 @@ build_project:
   artifacts:
     untracked: true
     expire_in: 1 day
-
-test_image:
-  stage: test
-  script:
-    - dotnet restore --packages /storage/nuget
-    - dotnet test $TEST_MAINAPP_ASP_PROJECT_PATH -c Release --no-restore
-  except:
-    - tags
-  dependencies:
-    - build_project
 
 pack_image:
   stage: pack
@@ -77,7 +66,6 @@ publish_image_dev:
 
 stages:
   - build
-  - test
   - pack
   - publish
 
