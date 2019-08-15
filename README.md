@@ -11,7 +11,8 @@
     - [Атрибуты валидации](#атрибуты-валидации)
       - [I. BasicIdRequiredAttribute](#i-basicidrequiredattribute)
       - [II. BasicIdRangeAttribute](#ii-basicidrangeattribute)
-      - [II. StringRangeAttribute](#ii-stringrangeattribute)
+      - [III. StringRangeAttribute](#iii-stringrangeattribute)
+      - [IV. NotEmptyAttribute](#iv-notemptyattribute)
 
 <!-- /TOC -->
 
@@ -144,7 +145,7 @@ public class GateSyntheticTriggerPostViewModel
 }
 ```
 
-#### II. StringRangeAttribute
+#### III. StringRangeAttribute
 
 > Атрибут для валидации возможных значений строкового типа.
 
@@ -164,5 +165,27 @@ public abstract class SharedEntityPostViewModel
     public IEnumerable<string> SharedToAll { get; set; } = Enumerable.Empty<string>();
 
     ...
+}
+```
+
+#### IV. NotEmptyAttribute
+
+> Модификация _RequiredAttribute_ для коллекции типа _IEnumerable_.
+
+##### Пример:
+
+```CSharp
+/// <summary>
+/// Принимаемая модель для обновления данных правила автоматона.
+/// </summary>
+public class GateAutomatonRulePutViewModel
+{
+    ...
+
+    /// <summary>
+    /// Список переменных.
+    /// </summary>
+    [NotEmpty(ErrorMessage = "Не указан список входных переменных скрипта правила.")]
+    public IEnumerable<GateAutomatonRuleVariablePostViewModel> Variables { get; set; } = Enumerable.Empty<GateAutomatonRuleVariablePostViewModel>();
 }
 ```
