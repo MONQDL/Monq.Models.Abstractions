@@ -10,20 +10,20 @@ namespace Monq.Models.Abstractions
         /// <summary>
         /// Больше чем.
         /// </summary>
-        [Range(1, long.MaxValue, ErrorMessage = "Недопустимое значение даты в формате Unixtimestamp.")]
-        public long? MoreThan { get; set; } = null;
+        [Range(default, 2147483647, ErrorMessage = "Недопустимое значение даты в формате Unixtimestamp.")]
+        public int? MoreThan { get; set; } = null;
 
         /// <summary>
         /// Меньше чем.
         /// </summary>
-        [Range(1, long.MaxValue, ErrorMessage = "Недопустимое значение даты в формате Unixtimestamp.")]
-        public long? LessThan { get; set; } = null;
+        [Range(default, 2147483647, ErrorMessage = "Недопустимое значение даты в формате Unixtimestamp.")]
+        public int? LessThan { get; set; } = null;
 
         /// <summary>
         /// Равна.
         /// </summary>
-        [Range(1, long.MaxValue, ErrorMessage = "Недопустимое значение даты в формате Unixtimestamp.")]
-        public long? Equal { get; set; } = null;
+        [Range(default, 2147483647, ErrorMessage = "Недопустимое значение даты в формате Unixtimestamp.")]
+        public int? Equal { get; set; } = null;
 
         /// <summary>
         /// Находится в диапазоне.
