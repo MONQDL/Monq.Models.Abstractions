@@ -3,6 +3,15 @@ variables:
 
 image: mcr.microsoft.com/dotnet/core/sdk:3.0
 
+test_image:
+  stage: test
+  script:
+    - color_print INFORMATION "Skip stage"
+  except:
+    - tags
+  dependencies:
+    - build_project
+
 include:
   - project: 'smon.monq.ru/devops/devops-files'
     ref: master
