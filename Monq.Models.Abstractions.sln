@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29123.88
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monq.Models.Abstractions", "src\Monq.Models.Abstractions\Monq.Models.Abstractions.csproj", "{DCCC9998-4058-420A-B735-06603BE95640}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monq.Models.Abstractions", "src\Monq.Models.Abstractions\Monq.Models.Abstractions.csproj", "{DCCC9998-4058-420A-B735-06603BE95640}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9B151E16-E04D-4AF1-8838-D62FA8C15442}"
 	ProjectSection(SolutionItems) = preProject
@@ -15,6 +15,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FAA517DE-B63C-452A-9F46-067CE757FBE0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monq.Models.Abstractions.Tests", "src\Monq.Models.Abstractions.Tests\Monq.Models.Abstractions.Tests.csproj", "{FB342C02-E7A4-4C8D-884F-336620457B98}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,12 +27,17 @@ Global
 		{DCCC9998-4058-420A-B735-06603BE95640}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCCC9998-4058-420A-B735-06603BE95640}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCCC9998-4058-420A-B735-06603BE95640}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB342C02-E7A4-4C8D-884F-336620457B98}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB342C02-E7A4-4C8D-884F-336620457B98}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB342C02-E7A4-4C8D-884F-336620457B98}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB342C02-E7A4-4C8D-884F-336620457B98}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{DCCC9998-4058-420A-B735-06603BE95640} = {FAA517DE-B63C-452A-9F46-067CE757FBE0}
+		{FB342C02-E7A4-4C8D-884F-336620457B98} = {FAA517DE-B63C-452A-9F46-067CE757FBE0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3FB67764-8482-4C21-AE9F-8BEDC908C8BB}

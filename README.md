@@ -189,3 +189,29 @@ public class GateAutomatonRulePutViewModel
     public IEnumerable<GateAutomatonRuleVariablePostViewModel> Variables { get; set; } = Enumerable.Empty<GateAutomatonRuleVariablePostViewModel>();
 }
 ```
+
+#### V. DateRequiredAttribute
+
+> Модификация _RequiredAttribute_ для типа _DateRangePostViewModel_.
+
+##### Пример:
+
+```CSharp
+/// <summary>
+/// Принимаемая модель фильтра истории действий синтетического триггера.
+/// </summary>
+public class GateSTEventHistoryFilterViewModel
+{
+    /// <summary>
+    /// Дата регистрации события (UnixTimeStamp).
+    /// </summary>
+    [DateRequired(ErrorMessage = "Не указана дата начала события.")]
+    public DatePostViewModel DateStart { get; set; } = null;
+
+    /// <summary>
+    /// Дата окончания события (UnixTimeStamp).
+    /// </summary>
+    [DateRequired(ErrorMessage = "Не указана дата окончания события.")]
+    public DatePostViewModel DateEnd { get; set; } = null;
+}
+```
