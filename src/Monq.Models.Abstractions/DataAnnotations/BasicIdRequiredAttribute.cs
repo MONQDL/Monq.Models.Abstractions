@@ -6,7 +6,6 @@ namespace Monq.Models.Abstractions.DataAnnotations
     /// <summary>
     /// Модификация <see cref="RequiredAttribute"/> для типа <see cref="BasicIdPostViewModel"/>.
     /// </summary>
-
     [AttributeUsage(AttributeTargets.Property | AttributeTargets.Parameter)]
     public sealed class BasicIdRequiredAttribute : RequiredAttribute
     {
@@ -18,6 +17,5 @@ namespace Monq.Models.Abstractions.DataAnnotations
             else
                 return false;
         }
-
     }
 }
