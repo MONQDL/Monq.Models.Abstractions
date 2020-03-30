@@ -59,11 +59,18 @@ public class GateSyntheticTriggerPostViewModel
 
 > Принимаемая модель конкретной даты, либо диапазона в формате Unixtimestamp, для выполнения фильтрации по определенному полю.
 
+> Существует также версия модели, которая работает с DateTimeOffset - находится в пространстве имен _Monq.Models.Abstractions.v2_
+
 #### Приоритет обработки полей _(если решились заполнить несколько полей модели)_: 
-#### _equals -> range -> lessThan -> moreThan_ 
+#### _equals -> range -> LessThanOrEqual -> MoreThanOrEqual -> lessThan -> moreThan_ 
+
+#### Допускаются комбинации: 
+    1. LessThanOrEqual && MoreThanOrEqual: >= x <=
+    2. LessThan && MoreThan: > x <
+    3. LessThanOrEqual && MoreThan: >= x <
+    4. LessThan && MoreThanOrEqual: > x <=
 
 > **Замечание:** на данный момент обработчик модели реализовать только для _Monq.ClickHouse.Client_ - метод FilterExtensions.FilterByDateRange(string fieldName, DatePostViewModel date) - используются в связке с _SQL Query Builder_.
-
 
 ##### Пример:
 
