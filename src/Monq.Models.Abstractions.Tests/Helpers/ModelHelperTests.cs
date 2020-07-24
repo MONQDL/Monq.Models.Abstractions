@@ -47,5 +47,21 @@ namespace Monq.Models.Abstractions.Tests.Helpers
 
             Assert.Equal(initialStr + putModel.Value, updatedStr);
         }
+
+        [Fact(DisplayName = "Проверка наличия подстроки по новому значению, если в модели указан флаг проверки.")]
+        public void ShouldProperlyCheckExistingSubstring()
+        {
+            var initialStr = "___test___";
+            var putModel = new ModelPropertyPutViewModel
+            {
+                Value = "test",
+                CheckExistingSubstring = true,
+                Behavior = ModelPropertyPutBehavior.Append
+            };
+
+            var updatedStr = ModelHelper.Update(initialStr, putModel);
+
+            Assert.Equal(initialStr, updatedStr);
+        }
     }
 }
