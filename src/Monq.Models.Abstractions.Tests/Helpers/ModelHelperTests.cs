@@ -63,5 +63,21 @@ namespace Monq.Models.Abstractions.Tests.Helpers
 
             Assert.Equal(initialStr, updatedStr);
         }
+
+        [Fact(DisplayName = "Проверка добавления переноса строки при конкатенации старого и нового значения строкового типа.")]
+        public void ShouldProperlyAppendWithNewLine()
+        {
+            var initialStr = "test1";
+            var putModel = new ModelPropertyPutViewModel
+            {
+                Value = "test",
+                AppendWithNewLine = true,
+                Behavior = ModelPropertyPutBehavior.Append
+            };
+
+            var updatedStr = ModelHelper.Update(initialStr, putModel);
+
+            Assert.Equal(initialStr + Environment.NewLine + putModel.Value, updatedStr);
+        }
     }
 }

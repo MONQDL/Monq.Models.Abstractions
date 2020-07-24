@@ -33,9 +33,21 @@ namespace Monq.Models.Abstractions.Helpers
             return value.Behavior switch
             {
                 ModelPropertyPutBehavior.Override => value.Value,
-                ModelPropertyPutBehavior.Append => targetProp + value.Value,
+                ModelPropertyPutBehavior.Append when !value.AppendWithNewLine => targetProp + value.Value,
+                ModelPropertyPutBehavior.Append when value.AppendWithNewLine => AppendLine(targetProp, value.Value),
                 _ => throw new ArgumentOutOfRangeException()
             };
+        }
+
+        static string AppendLine(string targetProp, string newValue)
+        {
+            if (string.IsNullOrWhiteSpace(targetProp))
+                return targetProp + newValue;
+
+            if (targetProp.EndsWith(Environment.NewLine) || newValue.StartsWith(Environment.NewLine))
+                return targetProp + newValue;
+
+            return targetProp + Environment.NewLine + newValue;
         }
     }
 }

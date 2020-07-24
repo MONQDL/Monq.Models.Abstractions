@@ -19,6 +19,14 @@ namespace Monq.Models.Abstractions
         public bool CheckExistingSubstring { get; set; } = false;
 
         /// <summary>
+        /// Добавить перенос на новую строку перед ставкой нового значения к существующему.
+        /// </summary>
+        /// <remarks>
+        /// Флаг имеет силу, если <see cref="Behavior"/> = <see cref="ModelPropertyPutBehavior.Append"/>.
+        /// </remarks>
+        public bool AppendWithNewLine { get; set; } = false;
+
+        /// <summary>
         /// Поведение при обновлении свойства сущности.
         /// </summary>
         [JsonConverter(typeof(StringEnumConverter))]
