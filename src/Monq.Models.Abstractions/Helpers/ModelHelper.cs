@@ -26,7 +26,10 @@ namespace Monq.Models.Abstractions.Helpers
 
             if (targetProp.Equals(value.Value) && value.Behavior == ModelPropertyPutBehavior.Override)
                 return targetProp;
-            
+
+            if (value.CheckExistingSubstring && targetProp.Contains(value.Value))
+                return targetProp;
+
             return value.Behavior switch
             {
                 ModelPropertyPutBehavior.Override => value.Value,
