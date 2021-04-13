@@ -1,23 +1,31 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Version>3.6</Version>
+    <Version>3.7</Version>
     <VersionSuffix>$(VersionSuffix)</VersionSuffix>
     <Version Condition=" '$(VersionSuffix)' != '' ">$(Version)-$(VersionSuffix)</Version>
     <TargetFramework>netstandard2.0</TargetFramework>
     <IsPackable>true</IsPackable>
-    <LangVersion>latest</LangVersion>
-    <Authors>NorthRebel</Authors>
+    <Authors>Evgeniy Zyatyna</Authors>
+    <Company>MONQ Digital lab</Company>
+    <Title>Monq.Models.Abstractions</Title>
     <PackageId>Monq.Models.Abstractions</PackageId>
-    <PackageTags>monq service-monitor</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <PackageProjectUrl>https://gitlab.monq.ru/smon.monq.ru/libraries/Monq.Models.Abstractions</PackageProjectUrl>
-    <Description>В библиотеке представлены примитивы входных моделей, а также кастомные атрибуты валидации.</Description>
+    <PackageTags>library models</PackageTags>
+    <PackageProjectUrl>https://github.com/MONQDL/Monq.Models.Abstractions</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/MONQDL/Monq.Models.Abstractions</RepositoryUrl>
+    <Description>The library provides input model primitives, as well as custom validation attributes.</Description>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <Nullable>enable</Nullable>
+    <LangVersion>9.0</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="System.ComponentModel.Annotations" Version="4.7.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="System.ComponentModel.Annotations" Version="5.0.0" />
   </ItemGroup>
 
 </Project>

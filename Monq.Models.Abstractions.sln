@@ -8,14 +8,14 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{9B151E16-E04D-4AF1-8838-D62FA8C15442}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
-		.gitlab-ci.yml = .gitlab-ci.yml
-		NuGet.config = NuGet.config
+		LICENSE = LICENSE
+		.github\workflows\netcorelibrary.yml = .github\workflows\netcorelibrary.yml
 		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{FAA517DE-B63C-452A-9F46-067CE757FBE0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monq.Models.Abstractions.Tests", "src\Monq.Models.Abstractions.Tests\Monq.Models.Abstractions.Tests.csproj", "{FB342C02-E7A4-4C8D-884F-336620457B98}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Monq.Models.Abstractions.Tests", "src\Monq.Models.Abstractions.Tests\Monq.Models.Abstractions.Tests.csproj", "{FB342C02-E7A4-4C8D-884F-336620457B98}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
