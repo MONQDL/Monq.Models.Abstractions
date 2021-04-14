@@ -11,7 +11,7 @@ namespace Monq.Models.Abstractions
         /// <summary>
         /// Новое значение.
         /// </summary>
-        public string Value { get; set; } = null;
+        public string? Value { get; set; } = null;
 
         /// <summary>
         /// Проверять, существует ли данное значение в обновляемой строке.

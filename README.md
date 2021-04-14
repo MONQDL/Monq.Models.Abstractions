@@ -1,25 +1,175 @@
 # Monq.Models.Abstractions
 
+*English*
+
+The library provides input model primitives, as well as custom validation attributes.
+
+## Installation
+
+```powershell
+Install-Package Monq.Models.Abstractions
+```
+
+## Модели
+
+#### I. BasicIdPostViewModel
+
+> The data model is used in requests for data binding among themselves when adding and updating objects.
+
+##### Example:
+
+```csharp
+public class GateSyntheticTriggerPostViewModel
+{
+    [BasicIdRequired(ErrorMessage = "Owning workgroup ID was not specified.")]
+    [BasicIdRange(1, long.MaxValue, ErrorMessage = "Invalid value for owner workgroup ID.")]
+    public BasicIdPostViewModel OwnerWorkGroup { get; set; }
+
+    ...
+}
+```
+
+```json
+{
+  "ownerWorkGroup": {
+    "id": 23
+  }
+}
+```
+
+#### II. DatePostViewModel
+
+> The accepted model for a specific date, or range, in Unixtimestamp format, to filter on a specific field.
+
+> There is also a version of the model that works with DateTimeOffset - located in the _Monq.Models.Abstractions.v2_ namespace
+
+#### Priority of processing fields _(if you decided to fill in several fields of the model)_:
+#### _equals -> range -> LessThanOrEqual -> MoreThanOrEqual -> lessThan -> moreThan_ 
+
+#### Combinations are allowed:
+    1. LessThanOrEqual && MoreThanOrEqual: >= x <=
+    2. LessThan && MoreThan: > x <
+    3. LessThanOrEqual && MoreThan: >= x <
+    4. LessThan && MoreThanOrEqual: > x <=
+
+> **Note:** at the moment the model handler is implemented only for _Monq.ClickHouse.Client_ - the FilterExtensions.FilterByDateRange method (string fieldName, DatePostViewModel date) - are used in conjunction with _SQL Query Builder_.
+
+##### Example:
+
+```csharp
+public class BuildFilterViewModel
+{
+   public virtual DatePostViewModel DateStart { get; set; } = null;
+
+   public virtual DatePostViewModel DateEnd { get; set; } = null;
+
+   ...
+}
+```
+
+```json
+{
+    "DateStart": {
+        "Equal": 1564606800
+    },
+    "DateEnd": {
+        "range": {
+            "start": 1564606800,
+            "end": 1565643599
+        }
+    }
+}
+```
+
+## Validation Attributes
+
+#### I. BasicIdRequiredAttribute
+
+> Modification of _RequiredAttribute_ for type _BasicIdPostViewModel_.
+
+##### Example:
+
+```csharp
+public class GateSyntheticTriggerPostViewModel
+{
+    [BasicIdRequired(ErrorMessage = "Owning workgroup ID was not specified.")]
+    [BasicIdRange(1, long.MaxValue, ErrorMessage = "Invalid value for owner workgroup ID.")]
+    public BasicIdPostViewModel OwnerWorkGroup { get; set; }
+}
+```
+
+#### II. BasicIdRangeAttribute
+
+> Modification of _RangeAttribute_ for type _BasicIdPostViewModel_.
+
+##### Example:
+
+```csharp
+public class GateSyntheticTriggerPostViewModel
+{
+    [BasicIdRequired(ErrorMessage = "Owning workgroup ID was not specified.")]
+    [BasicIdRange(1, long.MaxValue, ErrorMessage = "Invalid value for owner workgroup ID.")]
+    public BasicIdPostViewModel OwnerWorkGroup { get; set; }
+}
+```
+
+#### III. StringRangeAttribute
+
+> Attribute for validating possible values of a string type.
+
+##### Example:
+
+```csharp
+public abstract class SharedEntityPostViewModel
+{
+    [StringRange("read", "basic-read", "write")]
+    public IEnumerable<string> SharedToAll { get; set; } = Enumerable.Empty<string>();
+
+    ...
+}
+```
+
+#### IV. NotEmptyAttribute
+
+> Modification of _RequiredAttribute_ for a collection of type _IEnumerable_.
+
+##### Example:
+
+```csharp
+public class GateAutomatonRulePutViewModel
+{
+    ...
+
+    [NotEmpty(ErrorMessage = "The list of input variables of the rule script is not specified.")]
+    public IEnumerable<GateAutomatonRuleVariablePostViewModel> Variables { get; set; } = Enumerable.Empty<GateAutomatonRuleVariablePostViewModel>();
+}
+```
+
+#### V. DateRequiredAttribute
+
+> Modification of _RequiredAttribute_ for type _DateRangePostViewModel_.
+
+##### Example:
+
+```csharp
+public class GateSTEventHistoryFilterViewModel
+{
+    [DateRequired(ErrorMessage = "The start date of the event was not specified.")]
+    public DatePostViewModel DateStart { get; set; } = null;
+
+    [DateRequired(ErrorMessage = "The end date of the event was not specified.")]
+    public DatePostViewModel DateEnd { get; set; } = null;
+}
+```
+
+*Русский*
+
 В библиотеке представлены примитивы входных моделей, а также кастомные атрибуты валидации.
-
-<!-- TOC -->
-[Monq.Models.Abstractions](#monqmodelsabstractions)
-  - [Установка](#установка)
-    - [Модели](#модели)
-        - [I. BasicIdPostViewModel](#i-basicidpostviewmodel)
-        - [II. DatePostViewModel](#ii-datepostviewmodel)
-    - [Атрибуты валидации](#атрибуты-валидации)
-      - [I. BasicIdRequiredAttribute](#i-basicidrequiredattribute)
-      - [II. BasicIdRangeAttribute](#ii-basicidrangeattribute)
-      - [III. StringRangeAttribute](#iii-stringrangeattribute)
-      - [IV. NotEmptyAttribute](#iv-notemptyattribute)
-
-<!-- /TOC -->
 
 ## Установка
 
 ```powershell
-Install-Package Monq.Models.Abstractions -Source http://nuget.monq.ru/nuget/Default
+Install-Package Monq.Models.Abstractions
 ```
 
 ## Модели
@@ -30,15 +180,9 @@ Install-Package Monq.Models.Abstractions -Source http://nuget.monq.ru/nuget/Defa
 
 ##### Пример:
 
-```CSharp
-/// <summary>
-/// Принимаемая модель для создания синтетического триггера.
-/// </summary>
+```csharp
 public class GateSyntheticTriggerPostViewModel
 {
-    /// <summary>
-    /// Рабочая группа-владелец.
-    /// </summary>
     [BasicIdRequired(ErrorMessage = "Не указан идентификатор рабочей группы-владельца.")]
     [BasicIdRange(1, long.MaxValue, ErrorMessage = "Недопустимое значение идентификатора рабочей группы-владельца.")]
     public BasicIdPostViewModel OwnerWorkGroup { get; set; }
@@ -47,7 +191,7 @@ public class GateSyntheticTriggerPostViewModel
 }
 ```
 
-```JS
+```json
 {
   "ownerWorkGroup": {
     "id": 23
@@ -74,27 +218,18 @@ public class GateSyntheticTriggerPostViewModel
 
 ##### Пример:
 
-```CSharp
-/// <summary>
-/// Модель фильтра сборок ФТ.
-/// </summary>
+```csharp
 public class BuildFilterViewModel
 {
-   /// <summary>
-   /// Время начала выполнения.
-   /// </summary>
    public virtual DatePostViewModel DateStart { get; set; } = null;
 
-   /// <summary>
-   /// Время окончания выполнения.
-   /// </summary>
    public virtual DatePostViewModel DateEnd { get; set; } = null;
 
    ...
 }
 ```
 
-```JS
+```json
 {
     "DateStart": {
         "Equal": 1564606800
@@ -116,15 +251,9 @@ public class BuildFilterViewModel
 
 ##### Пример:
 
-```CSharp
-/// <summary>
-/// Принимаемая модель для создания синтетического триггера.
-/// </summary>
+```csharp
 public class GateSyntheticTriggerPostViewModel
 {
-    /// <summary>
-    /// Рабочая группа-владелец.
-    /// </summary>
     [BasicIdRequired(ErrorMessage = "Не указан идентификатор рабочей группы-владельца.")]
     [BasicIdRange(1, long.MaxValue, ErrorMessage = "Недопустимое значение идентификатора рабочей группы-владельца.")]
     public BasicIdPostViewModel OwnerWorkGroup { get; set; }
@@ -137,15 +266,9 @@ public class GateSyntheticTriggerPostViewModel
 
 ##### Пример:
 
-```CSharp
-/// <summary>
-/// Принимаемая модель для создания синтетического триггера.
-/// </summary>
+```csharp
 public class GateSyntheticTriggerPostViewModel
 {
-    /// <summary>
-    /// Рабочая группа-владелец.
-    /// </summary>
     [BasicIdRequired(ErrorMessage = "Не указан идентификатор рабочей группы-владельца.")]
     [BasicIdRange(1, long.MaxValue, ErrorMessage = "Недопустимое значение идентификатора рабочей группы-владельца.")]
     public BasicIdPostViewModel OwnerWorkGroup { get; set; }
@@ -158,16 +281,9 @@ public class GateSyntheticTriggerPostViewModel
 
 ##### Пример:
 
-```CSharp
-/// <summary>
-/// Принимаемая модель представления, которая включает в себя модели представления предоставления общего доступа к сущности
-/// для моделей POST/PUT/PATCH.
-/// </summary>
+```csharp
 public abstract class SharedEntityPostViewModel
 {
-    /// <summary>
-    /// Модель представления общих прав всем РГ.
-    /// </summary>
     [StringRange("read", "basic-read", "write")]
     public IEnumerable<string> SharedToAll { get; set; } = Enumerable.Empty<string>();
 
@@ -181,17 +297,11 @@ public abstract class SharedEntityPostViewModel
 
 ##### Пример:
 
-```CSharp
-/// <summary>
-/// Принимаемая модель для обновления данных правила автоматона.
-/// </summary>
+```csharp
 public class GateAutomatonRulePutViewModel
 {
     ...
 
-    /// <summary>
-    /// Список переменных.
-    /// </summary>
     [NotEmpty(ErrorMessage = "Не указан список входных переменных скрипта правила.")]
     public IEnumerable<GateAutomatonRuleVariablePostViewModel> Variables { get; set; } = Enumerable.Empty<GateAutomatonRuleVariablePostViewModel>();
 }
@@ -203,21 +313,12 @@ public class GateAutomatonRulePutViewModel
 
 ##### Пример:
 
-```CSharp
-/// <summary>
-/// Принимаемая модель фильтра истории действий синтетического триггера.
-/// </summary>
+```csharp
 public class GateSTEventHistoryFilterViewModel
 {
-    /// <summary>
-    /// Дата регистрации события (UnixTimeStamp).
-    /// </summary>
     [DateRequired(ErrorMessage = "Не указана дата начала события.")]
     public DatePostViewModel DateStart { get; set; } = null;
 
-    /// <summary>
-    /// Дата окончания события (UnixTimeStamp).
-    /// </summary>
     [DateRequired(ErrorMessage = "Не указана дата окончания события.")]
     public DatePostViewModel DateEnd { get; set; } = null;
 }

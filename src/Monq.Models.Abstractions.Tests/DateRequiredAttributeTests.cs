@@ -63,7 +63,7 @@ namespace Monq.Models.Abstractions.Tests
             Assert.False(result);
         }
 
-        static IEnumerable<object[]> ShouldProperlyValidateDateModelWithSimpleValueData() =>
+        public static IEnumerable<object[]> ShouldProperlyValidateDateModelWithSimpleValueData() =>
             new[]
             {
                 new[]
