@@ -31,15 +31,15 @@ namespace Monq.Models.Abstractions.DataAnnotations
                 case string strVal when AllowedValues.Contains(strVal, StringComparer.InvariantCultureIgnoreCase):
                     return ValidationResult.Success;
                 case string strVal:
-                    return new ValidationResult($"Указанное значение не входит в список допустимых: {string.Join(", ", AllowedValues)}.");
+                    return new ValidationResult($"The specified value is not in the list of valid values: {string.Join(", ", AllowedValues)}.");
                 case IEnumerable<string> strEnum when !strEnum.Any():
                     return ValidationResult.Success;
                 case IEnumerable<string> strEnum when strEnum.All(s => AllowedValues.Contains(s, StringComparer.InvariantCultureIgnoreCase)):
                     return ValidationResult.Success;
                 case IEnumerable<string> strEnum:
-                    return new ValidationResult($"Обнаружены значения, которые не входят в список допустимых: {string.Join(", ", AllowedValues)}.");
+                    return new ValidationResult($"Found values that are not in the list of valid values: {string.Join(", ", AllowedValues)}.");
                 default:
-                    return new ValidationResult($"Данный тип не является строкой или массивом строк.");
+                    return new ValidationResult($"This type is not a string or an array of strings.");
             }
         }
     }

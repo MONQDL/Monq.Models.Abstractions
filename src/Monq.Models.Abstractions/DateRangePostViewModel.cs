@@ -10,15 +10,15 @@ namespace Monq.Models.Abstractions
         /// <summary>
         /// Начальная точка диапазона.
         /// </summary>
-        [Required(ErrorMessage = "Не указана начальная точка диапазона дат.")]
-        [Range(default, int.MaxValue, ErrorMessage = "Недопустимое значение начальной точки диапазона дат в формате Unixtimestamp.")]
+        [Required(ErrorMessage = "The starting point of the date range was not specified.")]
+        [Range(default, int.MaxValue, ErrorMessage = "Invalid value for starting point of date range in Unixtimestamp format.")]
         public long Start { get; set; }
 
         /// <summary>
         /// Конечная точка диапазона.
         /// </summary>
-        [Required(ErrorMessage = "Не указана конечная точка диапазона дат.")]
-        [Range(default, int.MaxValue, ErrorMessage = "Недопустимое значение конечной точки диапазона дат в формате Unixtimestamp.")]
+        [Required(ErrorMessage = "The end point of the date range was not specified.")]
+        [Range(default, int.MaxValue, ErrorMessage = "Invalid date range endpoint value in Unixtimestamp format.")]
         public long End { get; set; }
     }
 }

@@ -11,13 +11,13 @@ namespace Monq.Models.Abstractions.v2
         /// <summary>
         /// Начальная точка диапазона.
         /// </summary>
-        [Required(ErrorMessage = "Не указана начальная точка диапазона дат.")]
+        [Required(ErrorMessage = "The starting point of the date range was not specified.")]
         public DateTimeOffset Start { get; set; }
 
         /// <summary>
         /// Конечная точка диапазона.
         /// </summary>
-        [Required(ErrorMessage = "Не указана конечная точка диапазона дат.")]
+        [Required(ErrorMessage = "The end point of the date range was not specified.")]
         public DateTimeOffset End { get; set; }
     }
 }
