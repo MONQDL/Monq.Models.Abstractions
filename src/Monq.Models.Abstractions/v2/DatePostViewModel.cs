@@ -35,6 +35,6 @@ namespace Monq.Models.Abstractions.v2
         /// <summary>
         /// Находится в диапазоне.
         /// </summary>
-        public DateRangePostViewModel Range { get; set; } = null;
+        public DateRangePostViewModel? Range { get; set; } = null;
     }
 }
