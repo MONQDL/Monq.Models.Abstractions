@@ -9,8 +9,11 @@ namespace Monq.Models.Abstractions.Extensions
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static v2.DatePostViewModel ToV2Model(this DatePostViewModel value) =>
-            new v2.DatePostViewModel
+        public static v2.DatePostViewModel? ToV2Model(this DatePostViewModel? value)
+        {
+            if (value is null)
+                return null;
+            return new v2.DatePostViewModel
             {
                 Equal = TryConvertToDateTime(value.Equal),
                 LessThan = TryConvertToDateTime(value.LessThan),
@@ -23,14 +26,18 @@ namespace Monq.Models.Abstractions.Extensions
                     End = TryConvertToDateTime(value.Range.End)!.Value,
                 } : null
             };
+        }
 
         /// <summary>
         /// Convert value to <see cref="v2.DatePostViewModel"/> using DateTimeOffset.FromUnixTimeMilliseconds converter.
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static v2.DatePostViewModel ToV2ModelFromMilliseconds(this DatePostViewModel value) =>
-            new v2.DatePostViewModel
+        public static v2.DatePostViewModel? ToV2ModelFromMilliseconds(this DatePostViewModel? value)
+        {
+            if (value is null)
+                return null;
+            return new v2.DatePostViewModel
             {
                 Equal = ConvertToDateTimeFromMilliseconds(value.Equal),
                 LessThan = ConvertToDateTimeFromMilliseconds(value.LessThan),
@@ -43,14 +50,18 @@ namespace Monq.Models.Abstractions.Extensions
                     End = ConvertToDateTimeFromMilliseconds(value.Range.End)!.Value,
                 } : null
             };
+        }
 
         /// <summary>
         /// Convert value to <see cref="v2.DatePostViewModel"/> using DateTimeOffset.FromUnixTimeSeconds converter.
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public static v2.DatePostViewModel ToV2ModelFromSeconds(this DatePostViewModel value) =>
-            new v2.DatePostViewModel
+        public static v2.DatePostViewModel? ToV2ModelFromSeconds(this DatePostViewModel? value)
+        {
+            if (value is null)
+                return null;
+            return new v2.DatePostViewModel
             {
                 Equal = ConvertToDateTimeFromSeconds(value.Equal),
                 LessThan = ConvertToDateTimeFromSeconds(value.LessThan),
@@ -63,6 +74,7 @@ namespace Monq.Models.Abstractions.Extensions
                     End = ConvertToDateTimeFromSeconds(value.Range.End)!.Value,
                 } : null
             };
+        }
 
         static DateTimeOffset? TryConvertToDateTime(long? value)
         {
