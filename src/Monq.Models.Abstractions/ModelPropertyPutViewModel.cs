@@ -1,6 +1,3 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-
 namespace Monq.Models.Abstractions
 {
     /// <summary>
@@ -29,7 +26,6 @@ namespace Monq.Models.Abstractions
         /// <summary>
         /// Поведение при обновлении свойства сущности.
         /// </summary>
-        [JsonConverter(typeof(StringEnumConverter))]
         public ModelPropertyPutBehavior Behavior { get; set; } = ModelPropertyPutBehavior.Override;
     }
 }

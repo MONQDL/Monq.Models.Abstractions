@@ -1,4 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace Monq.Models.Abstractions
 {
@@ -11,14 +11,14 @@ namespace Monq.Models.Abstractions
         /// Начальная точка диапазона.
         /// </summary>
         [Required(ErrorMessage = "The starting point of the date range was not specified.")]
-        [Range(default, int.MaxValue, ErrorMessage = "Invalid value for starting point of date range in Unixtimestamp format.")]
+        [Range(default, long.MaxValue, ErrorMessage = "Invalid value for starting point of date range in Unixtimestamp format.")]
         public long Start { get; set; }
 
         /// <summary>
         /// Конечная точка диапазона.
         /// </summary>
         [Required(ErrorMessage = "The end point of the date range was not specified.")]
-        [Range(default, int.MaxValue, ErrorMessage = "Invalid date range endpoint value in Unixtimestamp format.")]
+        [Range(default, long.MaxValue, ErrorMessage = "Invalid date range endpoint value in Unixtimestamp format.")]
         public long End { get; set; }
     }
 }
